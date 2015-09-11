@@ -3,20 +3,20 @@ rvm:
 - 2.2.0
 branches:
   only:
-    - master
+  - master
 gemfile:
 - Gemfile
 before_script:
-- psql -c 'create database ex_rails_test_db' -U postgres
+- psql -c 'create database shopping_cart_test_db' -U postgres
 - bundle exec rake db:create db:migrate db:schema:load
 deploy:
   provider: heroku
   api_key:
-    secure: 
-  app: store-1
+    secure: PGtEhkRLLlqGYr5ssFTdhbSzdpzv4nC9HZeuqUswK/hIFXpW7Zmw7gW5SRgJ2fNX9oPs8DI+8xVBncz7uIm4v2YWSzJiJJ2F4GdiBEVCQjlVWJbiRHriqYzxlGgH269ZOmClO0bLD6nsDNadT5QnDaAT6E2E/qUS+PUXlfiPcNwK0p662l9yIgP57wJoRqkj1E9VLklEyTgSgEB6+zjXJ8SFhBNpKoXFAkFmzAXWdcFbTwV+O1XAua+1yF/N2jl/vPICeln77M6mTNkR13TJLt+xW1jOj8ba2+KkTTHSE17RDfmKQOiM6Nt6YQC9EH6DE6671qP7MQaOfTuPjhjAn387bmLjQ8pjH0rUYOa3YPS/YSGSxfzffKXog277YXFyH4zc+ygYupu0qO55hTpwWGEbwe7105v9woEymhCxDivmtSvq9cRBnX+FQilTUpQGZ3ONEjf8b7B4/pY8TP1ysM6sGmpUqGjiSoWlFB18wfYsECiwNfg1MuPg7Q1FYyKsXUWt4lE9uQVXTriIyp4zXMlmq4ERv0/xHA6h2TcDoLsT1+ix6vgXdnqOIZeCmF9DvXomEm7c8O2GfD9gVWw1XsT5JhqshcxFJGW2ZYdrlbfCfSCtZQGpsIM/kIEBz7Tj8CNmmsrHCDmxFgqaqhYo3NHAH1ce2JBQMZFqRyZKmLQ=
+  app: shopping-cart-1
   run:
-    - "rake db:migrate"
-    - restart
+  - rake db:migrate
+  - restart
   on:
     branch: master
     rvm: 2.2.0
