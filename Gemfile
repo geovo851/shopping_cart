@@ -52,3 +52,4 @@ end
 gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'devise'
+gem 'declarative_authorization', github: "stffn/declarative_authorization"
