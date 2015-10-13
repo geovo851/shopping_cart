@@ -2,7 +2,12 @@ class ProductsController < ApplicationController
   filter_resource_access
   
   def index
-    @products = Product.all
+    @products = Product.page(params[:page]).per(10)
+
+    respond_to do |format|
+      format.html
+      format.js {}
+    end
   end
   
   def show
@@ -11,10 +16,12 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @categories = Category.all
   end
 
   def edit
     @product = Product.find(params[:id])
+    @categories = Category.all
   end
 
   def create
@@ -23,6 +30,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to products_path
     else
+      @categories = Category.all
       render 'new'
     end
   end
@@ -33,6 +41,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params)
       redirect_to products_path
     else
+      @categories = Category.all
       render 'edit'
     end
   end

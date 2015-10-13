@@ -1,0 +1,50 @@
+<%= image_tag(@product.photo_url(:thumb)) if @product.photo? %></td>
+
+<%= form_for @product, :html => { multipart: true, class: "form-horizontal" } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-1 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :name, size: 22, autofocus: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :category, class: "col-sm-1 control-label" %>
+    <div class="col-sm-4">
+      <%= f.collection_select(:category_id, @categories, 
+                  :id, :title, {:prompt => 'Please select category'}, class: "form-control") %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, class: "col-sm-1 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_area :description, cols: 33, rows: 1, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price, class: "col-sm-1 control-label" %>
+    <div class="col-sm-2">
+      <%= f.text_field :price, size: 11, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :photo, class: "col-sm-1 control-label" %>
+    <div class="col-sm-4">
+      <%= f.file_field :photo%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-4">
+      <%= f.submit title_sumbit, class: "btn btn-primary btn-sm"%>
+    </div>
+  </div>
+<% end %>
+
+<div><%= button_to 'Back', products_path, method: :get, class: "btn btn-default" %></div>
+
