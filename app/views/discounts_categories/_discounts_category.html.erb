@@ -1,0 +1,15 @@
+<tr class="info">
+  <td><%= link_to discounts_category.id,
+                  discounts_category_path(discounts_category) %></td>
+  <td><%= discounts_category.category.title %></td>
+  <td><%= discounts_category.quantity %></td>
+  <td><%= discounts_category.value %></td>
+  <td><%= discounts_category.type_discount %></td>
+  <td><%= discounts_category.actual ? 'Yes' : 'No' %></td>
+  <td><%= button_to 'Edit', edit_discounts_category_path(discounts_category),
+                     method: :get, class: "btn btn-success btn-xs" %></td>
+  <td><%= button_to 'Delete', discounts_category_path(discounts_category),
+                     method: :delete,
+                     data: { confirm: 'Are you sure?' },
+                     class: "btn btn-danger btn-xs" %></td>
+</tr>

@@ -1,0 +1,2 @@
+module DiscountsCategoriesHelper
+end

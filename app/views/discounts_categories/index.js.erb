@@ -1,0 +1,3 @@
+$('tbody#discounts-categories').html('<%= escape_javascript render(partial: "discounts_category", :collection => @discounts_categories, :as => :discounts_category) %>');
+
+$('#paginator').html('<%= escape_javascript(paginate(@discounts_categories, :remote => true).to_s) %>');

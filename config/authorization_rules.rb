@@ -5,7 +5,7 @@ authorization do
 
   role :admin do
     has_permission_on :store, :to => [:index]
-    has_permission_on [:products, :categories], :to => :manage
+    has_permission_on [:products, :categories, :discounts_categories, :discounts_products], :to => :manage
 
     has_permission_on :admin, :to => :index
   end
