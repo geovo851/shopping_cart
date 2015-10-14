@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   filter_resource_access
   
   def index
-    @products = Product.page(params[:page]).per(10)
+    @products = Product.page(params[:page]).per(5)
 
     respond_to do |format|
       format.html
