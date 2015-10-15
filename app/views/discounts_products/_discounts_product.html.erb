@@ -2,9 +2,9 @@
   <td><%= link_to discounts_product.id,
                   discounts_product_path(discounts_product) %></td>
   <td><%= discounts_product.product.name %></td>
-  <td><%= discounts_product.quantity %></td>
-  <td><%= discounts_product.value %></td>
   <td><%= discounts_product.type_discount %></td>
+  <td><%= "#{discounts_product.value} #{discounts_product.type_discount == DiscountsProduct.types[0] ? '%' : '$'}" %></td>
+  <td><%= discounts_product.quantity%></td>
   <td><%= discounts_product.actual ? 'Yes' : 'No' %></td>
   <td><%= button_to 'Edit', edit_discounts_product_path(discounts_product),
                      method: :get, class: "btn btn-success btn-xs" %></td>

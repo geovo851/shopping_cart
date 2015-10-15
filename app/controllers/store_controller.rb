@@ -1,4 +1,8 @@
 class StoreController < ApplicationController
+  include CurrentCart
+  filter_access_to :all
+  before_action :set_cart
+
   def index
     @products = Product.page(params[:page]).per(5)
     @categories = Category.all
@@ -9,7 +13,7 @@ class StoreController < ApplicationController
     end
   end
 
-  def show
+  def product
     @product = Product.find(params[:id])
     @categories = Category.all
   end
@@ -24,5 +28,21 @@ class StoreController < ApplicationController
       format.html
       format.js {}
     end
+  end
+
+  def cart
+    @cart = Cart.find(params[:id])
+  end
+
+  def delivery
+    @categories = Category.all
+  end
+
+  def about
+    @categories = Category.all
+  end
+
+  def contact
+    @categories = Category.all
   end
 end

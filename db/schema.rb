@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20151014125425) do
   enable_extension "plpgsql"
 
   create_table "carts", force: :cascade do |t|
-    t.decimal  "discount",   precision: 15, scale: 2
-    t.decimal  "total_sum",  precision: 15, scale: 2, null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.decimal  "discount",   precision: 15, scale: 2, default: 0.0
+    t.decimal  "total_sum",  precision: 15, scale: 2, default: 0.0
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(version: 20151014125425) do
   create_table "products_carts", force: :cascade do |t|
     t.integer  "cart_id"
     t.integer  "product_id"
-    t.integer  "quantity",                            null: false
-    t.decimal  "price",      precision: 15, scale: 2, null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.integer  "quantity",                            default: 1
+    t.decimal  "price",      precision: 15, scale: 2,             null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "products_carts", ["cart_id"], name: "index_products_carts_on_cart_id", using: :btree

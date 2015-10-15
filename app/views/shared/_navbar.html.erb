@@ -12,13 +12,21 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-left">
         <li class="<%= yield(:products) %>"><%= link_to 'Products', root_path %></li>
-        <li class="<%= yield(:delivery) %>"><%= link_to 'Delivery and payment', "#" %></li>
-        <li class="<%= yield(:about) %>"><%= link_to 'About Us', "#" %></li>
-        <li class="<%= yield(:contact) %>"><%= link_to 'Contact Us', "#" %></li>
+        <li class="<%= yield(:delivery) %>"><%= link_to 'Delivery and payment', store_delivery_path %></li>
+        <li class="<%= yield(:about) %>"><%= link_to 'About Us', store_about_path %></li>
+        <li class="<%= yield(:contact) %>"><%= link_to 'Contact Us', store_contact_path %></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right"> 
-        
+        <% if @cart %>
+          <li class="<%= yield(:cart) %>">
+            <%= link_to store_cart_path(@cart) do %>
+              <span class="glyphicon glyphicon-shopping-cart"></span>
+              <%= "Cart: #{@count_in_cart}" %>
+            <% end %>
+          </li>
+        <% end %>
+
         <% if user_signed_in? %>
 
           <li id="fat-menu" class="dropdown">
@@ -36,7 +44,7 @@
               </li>
             </ul>
           </li>
-          
+
           <% if permitted_to? :index, :admin %>
             <li><%= link_to 'Admin panel', admin_path %></li>
           <% end %>

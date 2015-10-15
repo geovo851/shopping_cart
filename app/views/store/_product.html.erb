@@ -1,11 +1,18 @@
 <tr>
   <td><%= image_tag(product.photo) if product.photo? %> </td>
   <td>
-    <p id="name_product"><%= link_to product.name, store_show_product_path(product) %></p>
-    <p><%= link_to product.description, store_show_product_path(product) %></p>
-    <p><%= link_to 'Reviews', store_show_product_path(product) %></p>
+    <p id="name_product"><%= link_to product.name, store_product_path(product) %></p>
+    <p><%= link_to product.description, store_product_path(product) %></p>
+    <p><%= link_to 'Reviews', store_product_path(product) %></p>
   </td>
   <td>
     <p id="price"><%= product.price %>$</p>
+    <p>
+      <%= button_to products_carts_path(product_id: product), 
+                    params: { price: product.price }, class: "btn btn-primary btn-sm" do %>
+        <span class="glyphicon glyphicon-shopping-cart"></span>
+        Add to cart
+      <% end %>
+    </p>
   </td>
 </tr>

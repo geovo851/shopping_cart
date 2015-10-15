@@ -1,0 +1,95 @@
+<% provide(:cart, 'active') %>
+<% provide(:title, 'Cart') %>
+
+<div class="container-fluid"> 
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+
+      <div class="page-header">
+        <h1>Cart</h1>
+      </div>
+
+      <% if @cart.products_carts.empty? %>
+        <b>Cart empty.</b>
+      <% else %>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+             <tr class="warning">
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Sum</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @cart.products_carts.each do |p| %>
+
+                <tr class="info">
+                  <td><%= p.product.name if p.product %></td>
+                  <td>
+                    <%= text_field_tag :quantity, p.quantity, size: 4,
+                        class: 'quantity', id: p.id %>
+                  </td>
+                  <td class="ceil_right"><%= p.price %></td>
+                  <td class="ceil_right"><%= p.quantity * p.price %></td>
+                  <td>
+                    <%= button_to 'Delete from сart', products_cart_path(p),
+                          method: :delete,
+                          data: { confirm: 'Are you sure?' },
+                          class: "btn btn-primary btn-xs" %>
+                  </td>
+                </tr>
+
+              <% end %>
+              <tr class="total_line">
+                <td colspan="3">Discount:</td>
+                <td class="total_ceil" id="cart-discount"><%= @cart.discount %></td>
+              </tr>
+              <tr class="total_ceil">
+                <td colspan="3">Total sum:</td>
+                <td class="total_ceil" id="cart-totalsum"><%= @cart.total_sum %></td>
+              </tr>
+          </tbody>
+          </table>
+        </div>
+      <% end %>
+      <p>
+        <%= button_to 'Back', root_path, method: :get, class: "btn btn-default" %>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".quantity").change(function() {
+      var quantity = $(this).val();
+      var price = parseFloat($(this).parent().next().text());
+      var el_sum = $(this).parent().next().next();
+
+      if (quantity <= 0) {
+        quantity = 1;
+        $(this).val(quantity);
+      }
+
+      var sum = (price * quantity).toFixed(2);
+
+      el_sum.text(sum);
+      $.ajax({
+        url: "/store/cart/update_quantity",
+        type: "POST",
+        data: {id: $(this).attr('id'), quantity: quantity},
+        success: function(data) {
+          $("#cart-totalsum").text(data.total_sum);
+          $("#cart-discount").text(data.discount);
+        }
+
+      });
+    });
+  });
+</script>

@@ -1,3 +1,13 @@
-// Place all the styles related to the carts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.total_line {
+  text-align: right;
+  font-weight: bold;
+  border-top: solid black;
+}
+.total_ceil {
+  font-weight: bold;
+  text-align: right;
+}
+
+.ceil_right {
+  text-align: right;
+}
