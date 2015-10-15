@@ -3,14 +3,13 @@ roles = Role.create([
   {title: 'user'}
 ]) if Role.count == 0
 
-coffee_beans   = Category.create(title: "Coffee Beans")
-instant_coffee = Category.create(title: "Instant Coffee")
-green_tea      = Category.create(title: "Green Tea")
-earl_grey_tea  = Category.create(title: "Earl Grey Tea")
-instant_tea    = Category.create(title: "Instant Tea")
-
-
 if Product.count == 0
+    coffee_beans   = Category.create(title: "Coffee Beans")
+    instant_coffee = Category.create(title: "Instant Coffee")
+    green_tea      = Category.create(title: "Green Tea")
+    earl_grey_tea  = Category.create(title: "Earl Grey Tea")
+    instant_tea    = Category.create(title: "Instant Tea")
+
     Product.create([
     {name: 'Clipper Green Tea With Lemon 26 Tea Bags 50G',
     description: 'Lemon Flavoured Green Tea. A light, crisp and highly refreshing green tea with a delicious lemony citrus zing.',
