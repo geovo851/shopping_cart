@@ -3,16 +3,6 @@ roles = Role.create([
   {title: 'user'}
 ]) if Role.count == 0
 
-products = Product.all
-products.each do |p|
-  p.destroy
-end
-
-categories = Category.all
-categories.each do |c|
-  c.destroy
-end
-
 coffee_beans   = Category.create(title: "Coffee Beans")
 instant_coffee = Category.create(title: "Instant Coffee")
 green_tea      = Category.create(title: "Green Tea")
